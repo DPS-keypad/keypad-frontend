@@ -1,0 +1,105 @@
+.dps-deck {
+  background-color: #000;
+  border-radius: 1rem;
+  padding: 7%;
+  padding-top: 4vh;
+  text-align: center;
+  width: 45vh;
+  height: 70vh;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.upper-container {
+  display: flex;
+  justify-content: space-around;
+  height: 18vh;
+  margin-bottom: 4vh;
+  margin-top: 3vh;
+}
+
+.screen {
+  background-color: #222;
+  color: #0f0;
+  font-family: 'Courier New', Courier, monospace;
+  height: 18vh;
+  width: 18vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.volume-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.volume-control {
+  background-color: #656565;
+  border: 1vh #000;
+  border-style: double;
+  border-radius: 100%;
+  height: 5vh;
+  width: 5vh;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  margin-bottom: 4vh;
+  height: 4vh;
+  background-color: #000;
+  border-radius: 1.5vh;
+  border: 0.3vh solid #444;
+}
+
+.slider-line {
+  height: 5%;
+  width: 90%;
+  margin: 1.6vh auto;
+  background-color: #323232;
+}
+
+.slider-button {
+  background-color: #444;
+  height: 20%;
+  width: 9%;
+  position: absolute;
+  top: 38%;
+  left: 50%;
+}
+
+.button-grid {
+  display: grid;
+  // up right down left
+  padding: 0 5vh 0 5vh;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2vh;
+  justify-items: center;
+}
+
+.button {
+  border: 0.3vh solid;
+  border-radius: 2vh;
+  height: 8vh;
+  width: 8vh;
+  transition: background-color 0.3s;
+}
+
+.nb-button{
+  width: 100%;
+  height: 100%;
+  border-radius: 2vh;
+}
+
+.button.green {
+  border-color: rgba(0, 128, 0, 0.69);
+}
+
+.button.blue {
+  border-color: rgba(0, 0, 181, 0.69);
+}
+
+.button.red {
+  border-color: rgba(182, 0, 0, 0.69);
+}

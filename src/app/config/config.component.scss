@@ -1,0 +1,26 @@
+nb-icon {
+  margin-left: 0.6rem;
+}
+
+img {
+  margin-left: 0.6rem;
+  height: 1.25rem;
+  border-radius: 80%;
+}
+
+p {
+  margin: 0;
+  position: absolute;
+  left: 4rem;
+}
+
+nb-accordion-item-body p {
+  margin-left: 0.8rem;
+  position: absolute;
+  left: 4rem;
+}
+
+nb-list-item:hover {
+  background-color: #30375a;
+  cursor: pointer;
+}
