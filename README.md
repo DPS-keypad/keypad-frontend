@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
 
+# From the developer
+
+raga fate npm install per installare le dipendenze e poi ng serve per avviare il server, poi vi dirà la porta su cui trovarlo (4200 default)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
