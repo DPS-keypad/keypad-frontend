@@ -2,19 +2,17 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Backend } from './src/app/configuration.ts';
+import { Backend } from '../configuration';
 
-// Add the following import statement
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConfigService {
-
   private hidden = new BehaviorSubject<boolean>(true);
   configHidden = this.hidden.asObservable();
   private selectedButtonId: number = 0;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   toggleConfigHidden() {
     this.hidden.next(!this.hidden.value);
@@ -24,13 +22,28 @@ export class ConfigService {
     this.selectedButtonId = buttonId;
   }
 
-  setAction(action: string) {
+  setAction(action: string): Observable<any> {
     console.log('Action: ' + action + ' Button ID: ' + this.selectedButtonId);
-    // chiamata a backend per settare questa azione al button selezionato
+    const payload = {
+      key: this.selectedButtonId,
+      action: action,
+    };
+    return this.http.post(Backend.url + '/set_api', payload, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
   }
 
+  getApiList(): Observable<any> {
+    return this.http.get(Backend.url + '/api_list', {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
+  }
 
-  /*// Metodo per il signup
+  /* // Metodo per il signup
   public signup(user: any) {
     return this.http.post(Backend.url + '/users/', user);
   }
@@ -63,10 +76,5 @@ export class ConfigService {
   // Metodo di per ottenere il ranking
   public getRanking(): Observable<any> {
     return this.http.get(Backend.url + '/ranking');
-  }*/
-
-
+  } */
 }
-
-
-
