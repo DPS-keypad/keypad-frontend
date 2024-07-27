@@ -12,7 +12,8 @@ export class ConfigService {
   configHidden = this.hidden.asObservable();
   private selectedButtonId: number = 0;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   toggleConfigHidden() {
     this.hidden.next(!this.hidden.value);
@@ -22,7 +23,7 @@ export class ConfigService {
     this.selectedButtonId = buttonId;
   }
 
-  setAction(action: string): Observable<any> {
+  setAction(action: string) {
     let key = "key" + this.selectedButtonId
     console.log('Action: ' + action + ' Button ID: ' + key);
     const payload = {
@@ -31,16 +32,13 @@ export class ConfigService {
     };
     console.log(payload);
     console.log(Backend.url + '/set_api');
-    return this.http.post(Backend.url + '/set_api', payload, {
+    this.http.post(Backend.url + '/set_api', payload, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
-    }).pipe(
-      catchError(error => {
-        console.error('Error occurred:', error);
-        return throwError(error);
-      })
-    );
+    }).subscribe((data) => {
+      console.log(data);
+    });
   }
 
   getApiList(): Observable<any> {
