@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConfigService } from './service/config.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dps-deck-app';
+
+
+  constructor(
+    private configService: ConfigService
+  ) { }
+
+  loginSpotify() {
+    this.configService.loginSpotify();
+  }
+
 }
