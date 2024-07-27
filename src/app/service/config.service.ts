@@ -9,8 +9,9 @@ import { Backend } from '../configuration';
 })
 export class ConfigService {
   private hidden = new BehaviorSubject<boolean>(true);
-  configHidden = this.hidden.asObservable();
-  private selectedButtonId: number = 0;
+  observableHidden = this.hidden.asObservable();
+  private selectedButtonId = new BehaviorSubject<number>(0);
+  observableSelectedButtonId = this.selectedButtonId.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -19,11 +20,11 @@ export class ConfigService {
   }
 
   changeButtonId(buttonId: number) {
-    this.selectedButtonId = buttonId;
+    this.selectedButtonId.next(buttonId);
   }
 
   setAction(action: string) {
-    let key = 'key' + this.selectedButtonId;
+    let key = "key" + this.selectedButtonId.value;
     console.log('Action: ' + action + ' Button ID: ' + key);
     const payload = {
       key: key,

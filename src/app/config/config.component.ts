@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../service/config.service';
+import { ActionDTO } from '../DTO/actionDTO';
+import { ApiDTO } from '../DTO/apiDTO';
 
 @Component({
   selector: 'config',
@@ -8,24 +10,26 @@ import { ConfigService } from '../service/config.service';
 })
 export class ConfigComponent implements OnInit {
 
-  configHidden = true;
-  keys = { "keyboard": [{ "description": "Cut", "id": "keyboard_cut", "key": "ctrl+x" }, { "description": "Copy", "id": "keyboard_copy", "key": "ctrl+c" }, { "description": "Paste", "id": "keyboard_paste", "key": "ctrl+v" }], "spotify": [{ "description": "Play/Pause", "id": "spotify_play" }, { "description": "Next", "id": "spotify_next" }, { "description": "Previous", "id": "spotify_previous" }] }
-  pots = [];
+  hidden = true;
+  selectedButtonId:number = 0;
+  keys: ApiDTO[] = [];
+  pots: ApiDTO[] = [];
 
   constructor(
     private configService: ConfigService
   ) { }
 
   ngOnInit(): void {
-    this.configService.configHidden.subscribe((value) => {
-      this.configHidden = value;
+    this.configService.observableHidden.subscribe((value) => {
+      this.hidden = value;
+    });
+    this.configService.observableSelectedButtonId.subscribe((value) => {
+      this.selectedButtonId = value;
     });
     // fetch the list of APIs
-    this.configService.getApiList().subscribe((data) => {
+    this.configService.getApiList().subscribe((data: { keys: ApiDTO[], pots: ApiDTO[] }) => {
       this.keys = data.keys;
       this.pots = data.pots;
-      console.log(this.keys);
-      console.log(this.pots);
     });
   }
 
@@ -33,7 +37,15 @@ export class ConfigComponent implements OnInit {
     this.configService.setAction(action);
   }
 
-  getImage(key: Object) {
-    return "assets/images/icons/spotify.png"
+  getImage(api: string) {
+    return "assets/images/icons/" + api + ".png";
+  }
+
+  getIcon(icon?: string): string {
+    if (icon) {
+      return icon;
+    } else {
+      return "";
+    }
   }
 }

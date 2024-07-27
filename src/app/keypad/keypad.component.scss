@@ -41,6 +41,12 @@
   border-radius: 100%;
   height: 5vh;
   width: 5vh;
+  transition: background-color 0.3s;
+}
+
+.volume-control:hover {
+  background-color: #888;
+  cursor: pointer;
 }
 
 .slider {
@@ -51,6 +57,12 @@
   background-color: #000;
   border-radius: 1.5vh;
   border: 0.3vh solid #444;
+  transition: background-color 0.3s;
+}
+
+.slider:hover {
+  background-color: #111;
+  cursor: pointer;
 }
 
 .slider-line {

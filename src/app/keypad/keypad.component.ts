@@ -20,6 +20,7 @@ export class KeypadComponent implements OnInit {
   }
 
   button_click(buttonId: number) {
+    // If the button clicked is the same as the current button, show it
     if (this.currentButtonId === buttonId || this.currentButtonId === 0 || this.hidden) {
       this.configService.toggleConfigHidden();
       this.hidden = !this.hidden;
@@ -29,7 +30,7 @@ export class KeypadComponent implements OnInit {
     }
     this.changeButtonColor(buttonId);
     this.currentButtonId = buttonId;
-    
+
   }
 
   changeButtonColor(newButtonId: number) {
@@ -38,10 +39,11 @@ export class KeypadComponent implements OnInit {
     let oldButton = document.getElementById('' + this.currentButtonId);
 
     if (newButton && oldButton) {
-      newButton.style.backgroundColor = 'grey';
-      oldButton.style.backgroundColor = 'black';
+      newButtonId === 10 || newButtonId === 11 ? newButton.style.backgroundColor = '#cdcdcd' : newButton.style.backgroundColor = 'grey';
+      this.currentButtonId === 10 || this.currentButtonId === 11 ? oldButton.style.backgroundColor = 'grey' : oldButton.style.backgroundColor = 'black';
+
     } else if (newButton) {
-      newButton.style.backgroundColor = 'grey';
+      newButtonId === 10 || newButtonId === 11 ? newButton.style.backgroundColor = '#cdcdcd' : newButton.style.backgroundColor = 'grey';
     }
 
   }

@@ -1,100 +1,30 @@
-<nb-accordion [hidden]="configHidden">
-  <nb-accordion-item *ngFor="let api of keys | keyvalue">
+<nb-accordion [hidden]="hidden || selectedButtonId > 9">
+  <nb-accordion-item *ngFor="let api of keys">
     <nb-accordion-item-header>
-      <img [src]="getImage(api.key)" alt="" />
-      <p>{{ api.key }}</p>
+      <img [src]="getImage(api.api_name)" alt="" />
+      <p>{{ api.api_name }}</p>
     </nb-accordion-item-header>
     <nb-accordion-item-body>
       <nb-list>
-        <nb-list-item *ngFor="let action of api.value" (click)="setAction(action.id)">
-          <nb-icon icon="play-circle-outline" status="success"></nb-icon>
+        <nb-list-item *ngFor="let action of api.actions" (click)="setAction(action.id)">
+          <nb-icon [icon]="getIcon(action.icon)" status="success"></nb-icon>
           <p>{{ action.description }}</p>
         </nb-list-item>
       </nb-list>
     </nb-accordion-item-body>
   </nb-accordion-item>
-
-
-
-
-  <nb-accordion-item>
+</nb-accordion>
+<nb-accordion [hidden]="hidden || selectedButtonId < 9">
+  <nb-accordion-item *ngFor="let api of pots">
     <nb-accordion-item-header>
-      <img src="assets/images/icons/spotify.png" alt="" />
-      <p>Spotify</p>
+      <img [src]="getImage(api.api_name)" alt="" />
+      <p>{{ api.api_name }}</p>
     </nb-accordion-item-header>
     <nb-accordion-item-body>
       <nb-list>
-        <nb-list-item (click)="setAction('keyboard_copy')">
-          <nb-icon icon="play-circle-outline" status="success"></nb-icon>
-          <p>Play</p>
-        </nb-list-item>
-        <nb-list-item>
-          <nb-icon icon="pause-circle-outline" status="success"></nb-icon>
-          <p>Pause</p>
-        </nb-list-item>
-        <nb-list-item>
-          <nb-icon icon="stop-circle-outline" status="success"></nb-icon>
-          <p>Stop</p>
-        </nb-list-item>
-        <nb-list-item>
-          <nb-icon icon="rewind-right-outline" status="success"></nb-icon>
-          <p>Next song</p>
-        </nb-list-item>
-      </nb-list>
-    </nb-accordion-item-body>
-  </nb-accordion-item>
-  <nb-accordion-item>
-    <nb-accordion-item-header>
-      <nb-icon icon="settings-2-outline"></nb-icon>
-      <p>System</p>
-    </nb-accordion-item-header>
-    <nb-accordion-item-body>
-      <nb-list>
-        <nb-list-item>
-          <nb-icon icon="scissors-outline"></nb-icon>
-          <p>Cut</p>
-        </nb-list-item>
-        <nb-list-item>
-          <nb-icon icon="copy-outline"></nb-icon>
-          <p>Copy</p>
-        </nb-list-item>
-        <nb-list-item>
-          <nb-icon icon="clipboard-outline"></nb-icon>
-          <p>Paste</p>
-        </nb-list-item>
-        <nb-list-item>
-          <nb-icon icon="volume-up-outline"></nb-icon>
-          <p>Volume Up</p>
-        </nb-list-item>
-        <nb-list-item>
-          <nb-icon icon="volume-down-outline"></nb-icon>
-          <p>Volume Down</p>
-        </nb-list-item>
-        <nb-list-item>
-          <nb-icon icon="volume-off-outline"></nb-icon>
-          <p>Mute</p>
-        </nb-list-item>
-      </nb-list>
-    </nb-accordion-item-body>
-  </nb-accordion-item>
-  <nb-accordion-item>
-    <nb-accordion-item-header>
-      <img src="assets/images/icons/vscode.png" alt="" />
-      <p>Visual Studio Code</p>
-    </nb-accordion-item-header>
-    <nb-accordion-item-body>
-      <nb-list>
-        <nb-list-item>
-          <nb-icon icon="arrow-right-outline" status="info"></nb-icon>
-          <p>Run</p>
-        </nb-list-item>
-        <nb-list-item>
-          <nb-icon icon="shake-outline" status="info"></nb-icon>
-          <p>Debug</p>
-        </nb-list-item>
-        <nb-list-item>
-          <nb-icon icon="bulb-outline" status="info"></nb-icon>
-          <p>Explain using Copilot</p>
+        <nb-list-item *ngFor="let action of api.actions" (click)="setAction(action.id)">
+          <nb-icon [icon]="getIcon(action.icon)" status="success"></nb-icon>
+          <p>{{ action.description }}</p>
         </nb-list-item>
       </nb-list>
     </nb-accordion-item-body>
