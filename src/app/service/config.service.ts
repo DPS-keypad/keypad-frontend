@@ -67,7 +67,8 @@ export class ConfigService {
     const REDIRECT_URI = 'http://localhost:8000/callback';
     const AUTH_URL = 'https://accounts.spotify.com/authorize';
 
-    const scope = 'user-read-private user-read-email';
+    const scope = 'user-modify-playback-state user-read-currently-playing app-remote-control user-read-private user-read-email';
+
     const params = {
         client_id: CLIENT_ID,
         response_type: 'code',
