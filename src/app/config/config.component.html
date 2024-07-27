@@ -1,4 +1,22 @@
 <nb-accordion [hidden]="configHidden">
+  <nb-accordion-item *ngFor="let api of keys | keyvalue">
+    <nb-accordion-item-header>
+      <img [src]="getImage(api.key)" alt="" />
+      <p>{{ api.key }}</p>
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <nb-list>
+        <nb-list-item *ngFor="let action of api.value" (click)="setAction(action.id)">
+          <nb-icon icon="play-circle-outline" status="success"></nb-icon>
+          <p>{{ action.description }}</p>
+        </nb-list-item>
+      </nb-list>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+
+
+
+
   <nb-accordion-item>
     <nb-accordion-item-header>
       <img src="assets/images/icons/spotify.png" alt="" />
