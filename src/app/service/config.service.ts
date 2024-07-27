@@ -50,7 +50,7 @@ export class ConfigService {
     });
   }
 
-  loginSpotify(){
+  /*loginSpotify(){
 
     this.http.get(Backend.url + '/login', {
       headers: new HttpHeaders({
@@ -60,8 +60,28 @@ export class ConfigService {
       console.log(data);
     });
 
+  }*/
 
+  loginSpotify(): void {
+    const CLIENT_ID = 'c6e1a2e3479b4890bb1ee4e6a8d69cbe';
+    const REDIRECT_URI = 'http://localhost:8000/callback';
+    const AUTH_URL = 'https://accounts.spotify.com/authorize';
+
+    const scope = 'user-read-private user-read-email';
+    const params = {
+        client_id: CLIENT_ID,
+        response_type: 'code',
+        scope: scope,
+        redirect_uri: REDIRECT_URI,
+        show_dialog: 'true'
+    };
+
+    const authUrl = `${AUTH_URL}?${new URLSearchParams(params).toString()}`;
+    window.location.href = authUrl;
   }
+
+
+
 
 
 }
