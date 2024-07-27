@@ -8,6 +8,7 @@ import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbCardM
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ConfigComponent } from './config/config.component';
 import { KeypadComponent } from './keypad/keypad.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { KeypadComponent } from './keypad/keypad.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     NbThemeModule.forRoot({ name: 'dark' }),
     NbLayoutModule,
     NbSidebarModule.forRoot(),

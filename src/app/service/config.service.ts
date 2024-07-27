@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Backend } from '../configuration';
@@ -23,16 +23,24 @@ export class ConfigService {
   }
 
   setAction(action: string): Observable<any> {
-    console.log('Action: ' + action + ' Button ID: ' + this.selectedButtonId);
+    let key = "key" + this.selectedButtonId
+    console.log('Action: ' + action + ' Button ID: ' + key);
     const payload = {
-      key: this.selectedButtonId,
+      key: key,
       action: action,
     };
+    console.log(payload);
+    console.log(Backend.url + '/set_api');
     return this.http.post(Backend.url + '/set_api', payload, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
-    });
+    }).pipe(
+      catchError(error => {
+        console.error('Error occurred:', error);
+        return throwError(error);
+      })
+    );
   }
 
   getApiList(): Observable<any> {
