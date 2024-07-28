@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../service/config.service';
-import { ActionDTO } from '../DTO/actionDTO';
 import { ApiDTO } from '../DTO/apiDTO';
 
 @Component({

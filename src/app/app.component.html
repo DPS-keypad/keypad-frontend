@@ -2,7 +2,10 @@
   <nb-layout withScroll>
     <nb-layout-header fixed>
       <p id="conf">DPS-Keypad Configuration Panel</p>
-      <button id="spotify-button" nbButton (click)="loginSpotify()" status="success">Spotify Login</button>
+      <button *ngIf="!spotifyConnected" id="spotify-button" nbButton ghost (click)="loginSpotify()" status="success">
+        <img src="../assets/images/icons/Spotify.png" alt="" id="spotify-logo">
+        Spotify Login
+      </button>
     </nb-layout-header>
 
     <nb-layout-column class="left-column">
@@ -13,6 +16,8 @@
       <config></config>
     </nb-layout-column>
 
-    <nb-layout-footer>Contact us</nb-layout-footer>
+    <nb-layout-footer>
+      <a href="https://www.wikihow.it/Contattare-Elon-Musk" target="_blank">Contact us</a>
+    </nb-layout-footer>
   </nb-layout>
 </main>

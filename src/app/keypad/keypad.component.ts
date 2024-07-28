@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../service/config.service';
-import * as e from 'express';
 
 @Component({
   selector: 'keypad',
@@ -41,7 +40,9 @@ export class KeypadComponent implements OnInit {
     if (newButton && oldButton) {
       newButtonId === 10 || newButtonId === 11 ? newButton.style.backgroundColor = '#cdcdcd' : newButton.style.backgroundColor = 'grey';
       this.currentButtonId === 10 || this.currentButtonId === 11 ? oldButton.style.backgroundColor = 'grey' : oldButton.style.backgroundColor = 'black';
-
+      if (newButtonId === this.currentButtonId && !this.hidden) {
+        newButtonId === 10 || newButtonId === 11 ? newButton.style.backgroundColor = '#cdcdcd' : newButton.style.backgroundColor = 'grey';;
+      }
     } else if (newButton) {
       newButtonId === 10 || newButtonId === 11 ? newButton.style.backgroundColor = '#cdcdcd' : newButton.style.backgroundColor = 'grey';
     }

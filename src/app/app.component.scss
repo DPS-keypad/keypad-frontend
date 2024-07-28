@@ -1,9 +1,3 @@
-#image {
-  height: 500px;
-  border-radius: 5%;
-  margin-left: 25%;
-}
-
 .right-column {
   max-height: 75vh;
   overflow-y: scroll;
@@ -16,9 +10,24 @@
 }
 
 #spotify-button {
-  margin-left: 75%;
+  color: rgba(70, 236, 78, 0.964);
+  margin-left: 50%;
+}
+
+#spotify-logo {
+  margin-right: 0.5rem;
+  height: 1.6rem;
 }
 
 #conf {
   width: 40vw;
+}
+
+a {
+  color: inherit !important;
+}
+
+a:hover {
+  color: rgb(48, 120, 201) !important;
+  transition: 0.2s;
 }
