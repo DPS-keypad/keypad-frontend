@@ -10,7 +10,7 @@ import { ApiDTO } from '../DTO/apiDTO';
 export class ConfigComponent implements OnInit {
 
   hidden = true;
-  selectedButtonId:number = 0;
+  selectedButtonId: number = 0;
   keys: ApiDTO[] = [];
   pots: ApiDTO[] = [];
 
@@ -45,6 +45,17 @@ export class ConfigComponent implements OnInit {
       return icon;
     } else {
       return "";
+    }
+  }
+
+  getIconStatus(api_name: string): string {
+    switch (api_name) {
+      case "Spotify":
+        return "success"
+      case "Visual Studio Code":
+        return "info"
+      default:
+        return "basic"
     }
   }
 }

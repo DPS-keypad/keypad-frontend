@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, throwError } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Backend } from '../configuration';
+import { NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,10 @@ export class ConfigService {
   private selectedButtonId = new BehaviorSubject<number>(0);
   observableSelectedButtonId = this.selectedButtonId.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private toastrService: NbToastrService
+  ) { }
 
   toggleConfigHidden() {
     this.hidden.next(!this.hidden.value);
@@ -38,16 +42,16 @@ export class ConfigService {
         }),
       })
       .subscribe((data) => {
-        console.log(data);
+        console.log(data)
+        this.toastrService.success(
+          "Action set successfully!",
+          "Action " + action + " set on " + (this.selectedButtonId.value > 10 ? "potentiometer!" : "key!"),
+          { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT })
       });
   }
 
   getApiList(): Observable<any> {
-    return this.http.get(Backend.url + '/api_list', {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    });
+    return this.http.get(Backend.url + '/api_list');
   }
 
   loginSpotify(): void {
@@ -55,7 +59,7 @@ export class ConfigService {
     const REDIRECT_URI = 'http://localhost:8000/callback';
     const AUTH_URL = 'https://accounts.spotify.com/authorize';
 
-    const scope = 'user-modify-playback-state user-read-currently-playing app-remote-control user-read-private user-read-email';
+    const scope = 'user-modify-playback-state user-read-playback-state user-read-currently-playing app-remote-control user-read-private user-read-email';
 
     const params = {
       client_id: CLIENT_ID,

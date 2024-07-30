@@ -1,7 +1,7 @@
 <main>
   <nb-layout withScroll>
     <nb-layout-header fixed>
-      <p id="conf">DPS-Keypad Configuration Panel</p>
+      <a id="conf" href="http://localhost:4200/">DPS-Keypad Configuration Panel</a>
       <button *ngIf="!spotifyConnected" id="spotify-button" nbButton ghost (click)="loginSpotify()" status="success">
         <img src="../assets/images/icons/Spotify.png" alt="" id="spotify-logo">
         Spotify Login
